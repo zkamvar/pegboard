@@ -1,6 +1,6 @@
 Package: pegboard
 Title: Explore and Manipulate Markdown Curricula from the Carpentries
-Version: 0.0.0.9018
+Version: 0.0.0.9019
 Authors@R:
     person(given = "Zhian N.",
            family = "Kamvar",
@@ -26,7 +26,8 @@ Imports:
     lifecycle,
     xslt,
     yaml,
-    commonmark
+    commonmark,
+    robotstxt
 Suggests:
     gert (>= 1.0.0),
     testthat,

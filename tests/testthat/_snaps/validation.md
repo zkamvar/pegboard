@@ -1,4 +1,4 @@
-# reporters will work without CLI
+# headings reporters will work without CLI
 
     Code
       expect_false(all(vh$validate_headings()))
@@ -35,7 +35,45 @@
       --## Solution  (duplicated)
       ---### ZNK test links and images 
 
-# reporters will work [plain]
+# links reporters will work without CLI
+
+    Code
+      expect_false(all(cats$validate_links()))
+    Message <simpleMessage>
+      ! Images need alt-text:
+      https://placekitten.com/g/102/102 (image-test.md:12)
+      https://placekitten.com/g/109/109 (image-test.md:41)
+
+---
+
+    Code
+      expect_equal(sum(loop$validate_links()), 3L)
+    Message <simpleMessage>
+      ! Images need alt-text:
+      https://carpentries.org/assets/img/TheCarpentries.svg (14-looping-data-sets.md:195)
+      ../no-workie.svg (14-looping-data-sets.md:197)
+      ! These files do not exist in the lesson:
+              ../no-workie.svg (14-looping-data-sets.md:191)
+      ../no-workie.svg (14-looping-data-sets.md:197)
+
+---
+
+    Code
+      expect_equal(sum(link$validate_links()), 2L)
+    Message <simpleMessage>
+      ! Link text should be more descriptive than 'link':
+            'link' (link-test.md:18)
+      'this link' (link-test.md:18)
+      ! Links must use HTTPS, not HTTP:
+            http://example.com (link-test.md:41)
+      ! The following anchors do not exist in the file:
+              #bad-fragment (link-test.md:22)
+      ! Relative links that are incorrectly formatted:
+              [should be a relative link](rel-image) -> [should be a relative link][rel-image] (link-test.md:36)
+      ! These files do not exist in the lesson:
+              incorrect-link.html (link-test.md:29)
+
+# headings reporters will work [plain]
 
     Code
       expect_false(all(vh$validate_headings()))
@@ -58,7 +96,7 @@
     Message <cliMessage>
       --------------------------------------------------------------------------------
 
-# reporters will work [ansi]
+# headings reporters will work [ansi]
 
     Code
       expect_false(all(vh$validate_headings()))
@@ -81,7 +119,7 @@
     Message <cliMessage>
       --------------------------------------------------------------------------------
 
-# reporters will work [unicode]
+# headings reporters will work [unicode]
 
     Code
       expect_false(all(vh$validate_headings()))
@@ -104,7 +142,7 @@
     Message <cliMessage>
       ────────────────────────────────────────────────────────────────────────────────
 
-# reporters will work [fancy]
+# headings reporters will work [fancy]
 
     Code
       expect_false(all(vh$validate_headings()))
@@ -127,7 +165,7 @@
     Message <cliMessage>
       ────────────────────────────────────────────────────────────────────────────────
 
-# duplciate reporting works [plain]
+# duplciate headings reporting works [plain]
 
     Code
       expect_equal(sum(loop$validate_headings()), 4L)
@@ -149,7 +187,7 @@
     Message <cliMessage>
       --------------------------------------------------------------------------------
 
-# duplciate reporting works [ansi]
+# duplciate headings reporting works [ansi]
 
     Code
       expect_equal(sum(loop$validate_headings()), 4L)
@@ -171,7 +209,7 @@
     Message <cliMessage>
       --------------------------------------------------------------------------------
 
-# duplciate reporting works [unicode]
+# duplciate headings reporting works [unicode]
 
     Code
       expect_equal(sum(loop$validate_headings()), 4L)
@@ -193,7 +231,7 @@
     Message <cliMessage>
       ────────────────────────────────────────────────────────────────────────────────
 
-# duplciate reporting works [fancy]
+# duplciate headings reporting works [fancy]
 
     Code
       expect_equal(sum(loop$validate_headings()), 4L)
@@ -214,4 +252,108 @@
         └─### ZNK test links and images 
     Message <cliMessage>
       ────────────────────────────────────────────────────────────────────────────────
+
+# links reporters will work [plain]
+
+    Code
+      expect_false(all(cats$validate_links()))
+    Message <cliMessage>
+      ! Images need alt-text:
+      https://placekitten.com/g/102/102 (image-test.md:12)
+      https://placekitten.com/g/109/109 (image-test.md:41)
+
+---
+
+    Code
+      expect_equal(sum(link$validate_links()), 2L)
+    Message <cliMessage>
+      ! Link text should be more descriptive than 'link':
+      'link' (link-test.md:18)
+      'this link' (link-test.md:18)
+      ! Links must use HTTPS, not HTTP:
+      http://example.com (link-test.md:41)
+      ! The following anchors do not exist in the file:
+      #bad-fragment (link-test.md:22)
+      ! Relative links that are incorrectly formatted:
+      [should be a relative link](rel-image) -> [should be a relative link][rel-image] (link-test.md:36)
+      ! These files do not exist in the lesson:
+      incorrect-link.html (link-test.md:29)
+
+# links reporters will work [ansi]
+
+    Code
+      expect_false(all(cats$validate_links()))
+    Message <cliMessage>
+      [33m![39m Images need alt-text:
+      https://placekitten.com/g/102/102 (image-test.md:12)
+      https://placekitten.com/g/109/109 (image-test.md:41)
+
+---
+
+    Code
+      expect_equal(sum(link$validate_links()), 2L)
+    Message <cliMessage>
+      [33m![39m Link text should be more descriptive than 'link':
+      'link' (link-test.md:18)
+      'this link' (link-test.md:18)
+      [33m![39m Links must use HTTPS, not HTTP:
+      http://example.com (link-test.md:41)
+      [33m![39m The following anchors do not exist in the file:
+      #bad-fragment (link-test.md:22)
+      [33m![39m Relative links that are incorrectly formatted:
+      [should be a relative link](rel-image) -> [should be a relative link][rel-image] (link-test.md:36)
+      [33m![39m These files do not exist in the lesson:
+      incorrect-link.html (link-test.md:29)
+
+# links reporters will work [unicode]
+
+    Code
+      expect_false(all(cats$validate_links()))
+    Message <cliMessage>
+      ! Images need alt-text:
+      https://placekitten.com/g/102/102 (image-test.md:12)
+      https://placekitten.com/g/109/109 (image-test.md:41)
+
+---
+
+    Code
+      expect_equal(sum(link$validate_links()), 2L)
+    Message <cliMessage>
+      ! Link text should be more descriptive than 'link':
+      'link' (link-test.md:18)
+      'this link' (link-test.md:18)
+      ! Links must use HTTPS, not HTTP:
+      http://example.com (link-test.md:41)
+      ! The following anchors do not exist in the file:
+      #bad-fragment (link-test.md:22)
+      ! Relative links that are incorrectly formatted:
+      [should be a relative link](rel-image) -> [should be a relative link][rel-image] (link-test.md:36)
+      ! These files do not exist in the lesson:
+      incorrect-link.html (link-test.md:29)
+
+# links reporters will work [fancy]
+
+    Code
+      expect_false(all(cats$validate_links()))
+    Message <cliMessage>
+      [33m![39m Images need alt-text:
+      https://placekitten.com/g/102/102 (image-test.md:12)
+      https://placekitten.com/g/109/109 (image-test.md:41)
+
+---
+
+    Code
+      expect_equal(sum(link$validate_links()), 2L)
+    Message <cliMessage>
+      [33m![39m Link text should be more descriptive than 'link':
+      'link' (link-test.md:18)
+      'this link' (link-test.md:18)
+      [33m![39m Links must use HTTPS, not HTTP:
+      http://example.com (link-test.md:41)
+      [33m![39m The following anchors do not exist in the file:
+      #bad-fragment (link-test.md:22)
+      [33m![39m Relative links that are incorrectly formatted:
+      [should be a relative link](rel-image) -> [should be a relative link][rel-image] (link-test.md:36)
+      [33m![39m These files do not exist in the lesson:
+      incorrect-link.html (link-test.md:29)
 
